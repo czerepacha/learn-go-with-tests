@@ -8,28 +8,28 @@ import (
 type Bitcoin int
 
 func (b Bitcoin) String() string {
-  return fmt.Sprintf("%d BTC", b)
+	return fmt.Sprintf("%d BTC", b)
 }
 
-type Wallet struct { 
-  balance Bitcoin
+type Wallet struct {
+	balance Bitcoin
 }
 
 func (w *Wallet) Deposit(n Bitcoin) {
-  w.balance += n
+	w.balance += n
 }
 
 func (w *Wallet) Balance() Bitcoin {
-  return w.balance
+	return w.balance
 }
 
 var ErrInsufficientFunds = errors.New("cannot withdraw, insufficient funds")
 
 func (w *Wallet) Withdraw(n Bitcoin) error {
-  if n > w.balance {
-    return ErrInsufficientFunds
-  }
+	if n > w.balance {
+		return ErrInsufficientFunds
+	}
 
-  w.balance -= n
-  return nil
+	w.balance -= n
+	return nil
 }
